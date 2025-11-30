@@ -17,4 +17,22 @@ function Loader.LoadDirectory(Directory: Instance, CurrentModules:{}?)
 	return CurrentModules
 end
 
+function Loader.BatchCall(Modules: {}, FunctionName: string, NewThread: boolean)
+	for NameOrIndex, Module in Modules do
+		if typeof(Module)=="Instance" and Module:IsA("ModuleScript") then
+			Module = require(Module)
+		end
+		if not Module[FunctionName] then 
+			continue; 
+		end
+		if NewThread == true then
+			task.spawn(function()
+				Module[FunctionName](Module, NameOrIndex)
+			end)
+		else
+			Module[FunctionName](Module, NameOrIndex)
+		end
+	end
+end
+
 return Loader
