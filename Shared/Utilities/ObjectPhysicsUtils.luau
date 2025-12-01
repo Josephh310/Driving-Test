@@ -1,0 +1,2 @@
+local CollisionGroups = {}
+return CollisionGroups
