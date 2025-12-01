@@ -1,3 +1,17 @@
+--[[
+	Game Collision Groups:
+		Default:
+			Most parts inside the map.
+		Character: 
+			Players characters
+		CarBody:
+			Main body of the car
+		CarWheels:
+			Wheels of the car
+			Is seperate from CarBody so that collision between the wheels and body
+			doesn't effect driving.
+]]
+
 local CollisionGroups = {}
 
 CollisionGroups.Enums = {
