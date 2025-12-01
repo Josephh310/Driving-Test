@@ -45,4 +45,21 @@ function ObjectPhysics.SetCollisionGroup(Object: Model|BasePart, CollisionGroup:
 		end
 	end
 end
+function ObjectPhysics.Init()
+	--Register collision groups
+	for _, GroupName in ObjectPhysicsUtils.Enums do
+		local Registered = PhysicsService:IsCollisionGroupRegistered(GroupName)
+		if not Registered then
+			PhysicsService:RegisterCollisionGroup(GroupName)
+		end
+	end
+	--Set collisions
+	for Index, CollisionPair in ObjectPhysicsUtils.CollisionData do
+		local Group1 = CollisionPair[1]
+		local Group2 = CollisionPair[2]
+		local CanCollide = CollisionPair[3]
+		PhysicsService:CollisionGroupSetCollidable(Group1, Group2, CanCollide)
+	end
+end
+
 return ObjectPhysics
