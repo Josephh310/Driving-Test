@@ -45,6 +45,15 @@ function ObjectPhysics.SetCollisionGroup(Object: Model|BasePart, CollisionGroup:
 		end
 	end
 end
+
+--Init functions
+function ObjectPhysics.Start()
+	for _, Player in Players:GetPlayers() do
+		OnPlayerAdded(Player)
+	end
+	Players.PlayerAdded:Connect(OnPlayerAdded)
+end
+
 function ObjectPhysics.Init()
 	--Register collision groups
 	for _, GroupName in ObjectPhysicsUtils.Enums do
