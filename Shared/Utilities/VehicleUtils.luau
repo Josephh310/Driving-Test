@@ -1,0 +1,3 @@
+local VehicleUtils = {}
+
+return VehicleUtils
