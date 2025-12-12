@@ -59,7 +59,7 @@ local function create(className: string, parent)
 		local currentClass = newClass
 
 		while currentClass do
-			local ctor = rawget(currentClass, "constructor")
+			local ctor = rawget(currentClass, "Construct")
 			if ctor then
 				table.insert(constructors, 1, ctor)  -- Prepend
 			end
@@ -92,8 +92,8 @@ local function create(className: string, parent)
 	return setmetatable(newClass, {
 		__index = parent,
 		__newindex = function(t, key, value)
-			if key == "constructor" then
-				rawset(t, "constructor", value)
+			if key == "Construct" then
+				rawset(t, "Construct", value)
 			elseif type(value) == "function" then
 				rawget(t, "__index")[key] = function(self, ...)
 					local parentMethod = newClass.super and newClass.super[key]
