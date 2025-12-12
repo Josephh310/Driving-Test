@@ -1,5 +1,4 @@
 local VehicleService = {}
-local InWorld = {}
 
 function VehicleService.SpawnVehicle(Player: Player, VehicleName: string)
 	
