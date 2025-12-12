@@ -1,9 +1,14 @@
 --Inheritence
-local CarClass = setmetatable({}, require(script.Parent))
-CarClass.__index = CarClass
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local CreateClass = require(ReplicatedStorage.Shared.Classes.CreateClass)
+local Vehicle = require(ReplicatedStorage.Shared.Classes.Vehicle)
 
-function CarClass.new()
+--Class
+local Car = CreateClass("Car", Vehicle) -- Inherits from Vehicle
+
+--Functions
+function Car:Construct()
 	
 end
 
-return CarClass
+return Car
